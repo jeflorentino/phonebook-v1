@@ -9,3 +9,7 @@ default: &default
 development:
   <<: *default
   database: phonebook1_development
+
+test:
+  <<: *default
+  database: phonebook1_test
