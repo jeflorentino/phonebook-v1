@@ -10,3 +10,16 @@ export const addContact = async (contact) => {
     });
     return response.json();
   };
+
+  export const getContacts = async () => {
+    try {
+      const response = await fetch(`${API_URL}/phonecontacts`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch contacts');
+      }
+      return response.json();
+    } catch (error) {
+      console.error('Failed to fetch contacts:', error);
+      throw error;
+    }
+  };
