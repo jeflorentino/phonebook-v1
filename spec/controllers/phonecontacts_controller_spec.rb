@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe PhonecontactsController, type: :controller do
   let!(:phonecontact) { create(:phonecontact) }
-  let(:valid_attributes) { { name: 'Jane Doe', phone_number: '+1 (555) 444-7777', notes: 'Jane Doe address' } }
+  let(:valid_attributes) { { name: 'Jane Doe', phone_number: '15554447777', notes: 'Jane Doe address' } }
   let(:invalid_attributes) { { name: '', phone_number: 'invalid', notes: '' } }
-  let(:new_attributes) { { name: 'John Updated', phone_number: '+55 (21) 98765-4321', notes: 'John updated example' } }
+  let(:new_attributes) { { name: 'John Updated', phone_number: '5521987654321', notes: 'John updated example' } }
 
   describe 'GET #index' do
     it 'returns a success response and a list of phonecontacts' do

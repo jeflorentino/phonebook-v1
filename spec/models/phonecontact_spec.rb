@@ -17,18 +17,18 @@ RSpec.describe Phonecontact, type: :model do
   end
 
   it 'is not valid with a duplicate phone number' do
-    phonecontact1 = FactoryBot.create(:phonecontact, phone_number: '+1 (123) 456-7890')
-    phonecontact2 = FactoryBot.build(:phonecontact, phone_number: '+1 (123) 456-7890')
+    phonecontact1 = FactoryBot.create(:phonecontact, phone_number: '11234567890')
+    phonecontact2 = FactoryBot.build(:phonecontact, phone_number: '11234567890')
     expect(phonecontact2).to_not be_valid
   end
 
   it 'is valid with a Brazilian phone number' do
-    phonecontact = FactoryBot.build(:phonecontact, phone_number: '+55 (21) 98765-4321')
+    phonecontact = FactoryBot.build(:phonecontact, phone_number: '5512345678901')
     expect(phonecontact).to be_valid
   end
 
   it 'is valid with an American phone number' do
-    phonecontact = FactoryBot.build(:phonecontact, phone_number: '+1 (123) 456-7890')
+    phonecontact = FactoryBot.build(:phonecontact, phone_number: '11234567890')
     expect(phonecontact).to be_valid
   end
 
