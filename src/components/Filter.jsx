@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Filter = () => {
+const Filter = ({ searchTerm, onSearchChange }) => {
   return (
-    <div className="mb-4">
-      <input type="text" placeholder="Filtrar contatos" className="w-full p-2 border border-gray-300 rounded-md"/>
-    </div>
+    <input
+      type="text"
+      placeholder="Search"
+      value={searchTerm}
+      onChange={onSearchChange}
+      className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+    />
   );
 };
 
