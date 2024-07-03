@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactCard from './ContactCard';
 
-const ContactList = ({ contacts, searchTerm }) => {
+const ContactList = ({ contacts, searchTerm, onEdit }) => {
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     contact.phone_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -14,6 +14,7 @@ const ContactList = ({ contacts, searchTerm }) => {
         <ContactCard
           key={contact.id}
           contact={contact}
+          onEdit={onEdit}
         />
       ))}
     </div>

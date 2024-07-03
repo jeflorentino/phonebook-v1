@@ -23,3 +23,17 @@ export const addContact = async (contact) => {
       throw error;
     }
   };
+
+  export const updateContact = async (id, contact) => {
+    const response = await fetch(`${API_URL}/phonecontacts/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(contact),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update contact');
+    }
+    return response.json();
+  };

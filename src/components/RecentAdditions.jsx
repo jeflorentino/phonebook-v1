@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactCard from './ContactCard';
 
-const RecentAdditions = ({ contacts }) => {
+const RecentAdditions = ({ contacts, onEdit }) => {
   const sortedContacts = contacts
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
     .slice(0, 5);
@@ -12,9 +12,10 @@ const RecentAdditions = ({ contacts }) => {
       <div className="flex flex-col gap-6">
         {sortedContacts.map(contact => (
           <ContactCard
-            key={contact.id}
-            contact={contact}
-          />
+          key={contact.id}
+          contact={contact}
+          onEdit={onEdit}
+        />
         ))}
       </div>
     </div>
