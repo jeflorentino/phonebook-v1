@@ -37,3 +37,13 @@ export const addContact = async (contact) => {
     }
     return response.json();
   };
+
+  export const deleteContact = async (id) => {
+    const response = await fetch(`${API_URL}/phonecontacts/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete contact');
+    }
+    return;
+  };

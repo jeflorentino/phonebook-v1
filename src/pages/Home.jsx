@@ -3,7 +3,7 @@ import AddContactForm from '../components/AddContactForm';
 import RecentAdditions from '../components/RecentAdditions';
 import Filter from '../components/Filter';
 import ContactList from '../components/ContactList';
-import { getContacts, updateContact } from '../services/api';
+import { getContacts, updateContact, deleteContact } from '../services/api';
 
 const Home = () => {
   const [contacts, setContacts] = useState([]);
@@ -30,6 +30,16 @@ const Home = () => {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  
+  const handleDelete = async (id) => {
+    try {
+      await deleteContact(id);
+      setContacts(prevContacts => prevContacts.filter(contact => contact.id !== id));
+    } catch (error) {
+      setError('Failed to delete contact');
+    }
   };
 
   const handleUpdate = async (updatedContact) => {
@@ -59,11 +69,20 @@ const Home = () => {
             editingContact={editingContact}
             setEditingContact={setEditingContact}
           />
-          <RecentAdditions contacts={contacts} onEdit={handleEdit}/>
+          <RecentAdditions 
+          contacts={contacts} 
+          onEdit={handleEdit} 
+          onDelete={handleDelete}/>
         </div>
-        <div className="w-full p-4 bg-white shadow-md">
-          <Filter searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-          <ContactList contacts={contacts} searchTerm={searchTerm} onEdit={handleEdit} />
+        <div className="w-full p-4 bg-gray-100 shadow-md">
+          <Filter 
+          searchTerm={searchTerm} 
+          onSearchChange={handleSearchChange} />
+          <ContactList 
+          contacts={contacts} 
+          searchTerm={searchTerm} 
+          onEdit={handleEdit} 
+          onDelete={handleDelete} />
         </div>
       </div>
       {error && <p className="text-red-500">{error}</p>}
