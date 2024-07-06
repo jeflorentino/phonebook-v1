@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPhoneNumber } from '../utils/formatPhoneNumber';
 
 const ContactCard = ({ contact, onDelete, onEdit }) => {
   return (
@@ -11,7 +12,7 @@ const ContactCard = ({ contact, onDelete, onEdit }) => {
           <h3 className="text-lg font-semibold">{contact.name}</h3>
         </div>
         <div className="flex-1">
-          <p className="text-sm text-gray-600">{contact.phone_number}</p>
+          <p className="text-sm text-gray-600">{formatPhoneNumber(contact.phone_number)}</p>
         </div>
         <div className="flex-1">
           <p className="text-sm text-gray-600">{contact.notes || 'N/A'}</p>
