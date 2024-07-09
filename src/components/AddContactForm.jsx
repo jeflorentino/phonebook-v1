@@ -58,8 +58,24 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
   };
 
   const validatePhoneNumber = (phone_number) => {
-    const phoneNumberPattern = /^(55\d{11}|1\d{10})$/;
-    return phoneNumberPattern.test(phone_number);
+    const cleaned = ('' + phone_number).replace(/\D/g, '');
+
+    const isBrazilian = cleaned.startsWith('55');
+    const isAmerican = cleaned.startsWith('1');
+
+    if (isBrazilian) {
+        if (cleaned.length === 13 && cleaned[4] === '9') { // Número móvel
+            return true;
+        } else if (cleaned.length === 12 && cleaned[4] !== '9') { // Número fixo
+            return true;
+        } else {
+            return false;
+        }
+    } else if (isAmerican && cleaned.length === 11) {
+        return true;
+    } else {
+        return false;
+    }
   };
 
   return (
@@ -69,7 +85,6 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
           <PhoneInput
             country={'us'}
             onlyCountries={['us', 'br']}
-            masks={{us: '(...) ...-....', br: '(..) . ....-....'}}
             value={phone_number}
             onChange={handlePhoneChange}
             inputProps={{
