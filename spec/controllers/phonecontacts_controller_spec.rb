@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PhonecontactsController, type: :controller do
   let!(:phonecontact) { create(:phonecontact) }
-  let(:valid_attributes) { { name: 'Jane Doe', phone_number: '15554447777', notes: 'Jane Doe address' } }
+  let(:valid_attributes) { { name: 'Jane Doe', phone_number: '5511987654322', notes: 'Jane Doe address' } }
   let(:invalid_attributes) { { name: '', phone_number: 'invalid', notes: '' } }
   let(:new_attributes) { { name: 'John Updated', phone_number: '5521987654321', notes: 'John updated example' } }
 
@@ -50,6 +50,7 @@ RSpec.describe PhonecontactsController, type: :controller do
         put :update, params: { id: phonecontact.to_param, phonecontact: new_attributes }
         phonecontact.reload
         expect(phonecontact.name).to eq('John Updated')
+        expect(phonecontact.phone_number).to eq('5521987654321')
         expect(response).to be_successful
       end
     end

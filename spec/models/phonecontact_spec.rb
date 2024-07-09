@@ -22,8 +22,13 @@ RSpec.describe Phonecontact, type: :model do
     expect(phonecontact2).to_not be_valid
   end
 
-  it 'is valid with a Brazilian phone number' do
-    phonecontact = FactoryBot.build(:phonecontact, phone_number: '5512345678901')
+  it 'is valid with a Brazilian mobile phone number' do
+    phonecontact = FactoryBot.build(:phonecontact, phone_number: '5511987654321')
+    expect(phonecontact).to be_valid
+  end
+
+  it 'is valid with a Brazilian fixed phone number' do
+    phonecontact = FactoryBot.build(:phonecontact, phone_number: '551132165432')
     expect(phonecontact).to be_valid
   end
 
@@ -37,19 +42,34 @@ RSpec.describe Phonecontact, type: :model do
     expect(phonecontact).to_not be_valid
   end
 
+  it 'is not valid with a Brazilian mobile phone number with incorrect length' do
+    phonecontact = FactoryBot.build(:phonecontact, phone_number: '551198765432') # Número inválido (móvel com comprimento incorreto)
+    expect(phonecontact).to_not be_valid
+  end
+
+  it 'is not valid with a Brazilian fixed phone number with incorrect length' do
+    phonecontact = FactoryBot.build(:phonecontact, phone_number: '55113216543') # Número inválido (fixo com comprimento incorreto)
+    expect(phonecontact).to_not be_valid
+  end
+
+  it 'is not valid with an American phone number with incorrect length' do
+    phonecontact = FactoryBot.build(:phonecontact, phone_number: '1123456789') # Número inválido (americano com comprimento incorreto)
+    expect(phonecontact).to_not be_valid
+  end
+
   it 'is valid without notes' do
     phonecontact = FactoryBot.build(:phonecontact, notes: nil)
     expect(phonecontact).to be_valid
   end
 
-  it 'is not valid with notes longer than 500 characters' do
-    long_notes = 'a' * 501
+  it 'is not valid with notes longer than 140 characters' do
+    long_notes = 'a' * 141
     phonecontact = FactoryBot.build(:phonecontact, notes: long_notes)
     expect(phonecontact).to_not be_valid
   end
 
-  it 'is valid with notes of 500 characters or less' do
-    valid_notes = 'a' * 500
+  it 'is valid with notes of 140 characters or less' do
+    valid_notes = 'a' * 140
     phonecontact = FactoryBot.build(:phonecontact, notes: valid_notes)
     expect(phonecontact).to be_valid
   end
