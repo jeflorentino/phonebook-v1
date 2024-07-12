@@ -47,7 +47,7 @@ describe('AddContactForm Component', () => {
         fireEvent.change(screen.getByLabelText('phone-input'), {
             target: { value: '15551239876' },
         });
-        
+
         expect(screen.getByRole('button', { name: /Adicionar/i })).toBeDisabled();
 
         fireEvent.change(screen.getByPlaceholderText('Digite o nome'), {
@@ -123,7 +123,7 @@ describe('AddContactForm Component', () => {
         );
     });
 
-    test('validates phone number', () => {
+    test('shows error message when notes exceed 140 characters', () => {
         render(
             <AddContactForm
                 onAdd={mockOnAdd}
@@ -133,13 +133,11 @@ describe('AddContactForm Component', () => {
             />
         );
 
-        fireEvent.change(screen.getByLabelText('phone-input'), {
-            target: { value: '123' },
+        fireEvent.change(screen.getByPlaceholderText('Digite'), {
+            target: { value: 'a'.repeat(141) },
         });
 
-        fireEvent.click(screen.getByRole('button', { name: /Adicionar/i }));
-
-        expect(screen.getByText('Número inválido.')).toBeInTheDocument();
+        expect(screen.getByText('Notas não podem exceder 140 caracteres')).toBeInTheDocument();
     });
 
     test('cancels editing contact', () => {
