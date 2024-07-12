@@ -23,8 +23,8 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!valid_phone) {
-      alert('Número de telefone inválido');
+    if (!valid_phone || !name) {
+      alert('Número de telefone inválido ou nome não fornecido');
       return;
     }
 
@@ -78,6 +78,8 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
     }
   };
 
+  const isFormValid = valid_phone && name;
+
   return (
     <div className="w-1/2 p-4 bg-white shadow-md mr-4">
       <form onSubmit={handleSubmit}>
@@ -89,6 +91,7 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
             onChange={handlePhoneChange}
             inputProps={{
               required: true,
+              'aria-label': 'phone-input'
             }}
           />
           {!valid_phone && <p className="text-red-500">Número inválido.</p>}
@@ -100,6 +103,7 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
             className="w-full p-2 border border-gray-300 rounded-md"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
         </div>
         <div className="mb-4">
@@ -114,7 +118,8 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
         <div className="flex justify-between">
           <button
             type="submit"
-            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+            className={`bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed`}
+            disabled={!isFormValid}
           >
             {editingContact ? 'Atualizar' : 'Adicionar'}
           </button>
