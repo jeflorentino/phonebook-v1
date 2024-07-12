@@ -8,6 +8,7 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
   const [phone_number, setPhone] = useState('');
   const [valid_phone, setValid] = useState(true);
   const [notes, setNotes] = useState('');
+  const [notesError, setNotesError] = useState('');
 
   useEffect(() => {
     if (editingContact) {
@@ -23,10 +24,6 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!valid_phone || !name) {
-      alert('Número de telefone inválido ou nome não fornecido');
-      return;
-    }
 
     if (editingContact) {
       try {
@@ -57,6 +54,16 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
     setValid(validatePhoneNumber(value));
   };
 
+  const handleNotesChange = (e) => {
+    const { value } = e.target;
+    if (value.length <= 140) {
+      setNotes(value);
+      setNotesError('');
+    } else {
+      setNotesError('Notas não podem exceder 140 caracteres');
+    }
+  };
+
   const validatePhoneNumber = (phone_number) => {
     const cleaned = ('' + phone_number).replace(/\D/g, '');
 
@@ -78,7 +85,7 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
     }
   };
 
-  const isFormValid = valid_phone && name;
+  const isFormValid = valid_phone && name && notes.length <= 140;
 
   return (
     <div className="w-1/2 p-4 bg-white shadow-md mr-4">
@@ -112,8 +119,9 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
             placeholder="Digite"
             className="w-full p-2 border border-gray-300 rounded-md"
             value={notes}
-            onChange={(e) => setNotes(e.target.value)}
+            onChange={handleNotesChange}
           />
+          {notesError && <p className="text-red-500">{notesError}</p>}
         </div>
         <div className="flex justify-between">
           <button
