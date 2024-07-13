@@ -1,22 +1,21 @@
 import React from 'react';
-import ContactCard from './ContactCard';
+import ContactCircle from './ContactCircle';
 
-const RecentAdditions = ({ contacts, onEdit, onDelete }) => {
+const RecentAdditions = ({ contacts, onEdit }) => {
   const sortedContacts = contacts
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
     .slice(0, 5);
 
   return (
-    <div className="w-full p-4 bg-gray-100">
+    <div className="w-full p-4 bg-gray-100 rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Últimos adicionados</h2>
       {sortedContacts.length > 0 ? (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-wrap gap-4">
           {sortedContacts.map(contact => (
-            <ContactCard
+            <ContactCircle
               key={contact.id}
               contact={contact}
               onEdit={onEdit}
-              onDelete={onDelete}
             />
           ))}
         </div>
