@@ -4,13 +4,13 @@ import ContactCircle from './ContactCircle';
 const RecentAdditions = ({ contacts, onEdit }) => {
   const sortedContacts = contacts
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-    .slice(0, 5);
+    .slice(0, 6);  
 
   return (
     <div className="w-full p-4 bg-gray-100 rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Últimos adicionados</h2>
       {sortedContacts.length > 0 ? (
-        <div className="flex flex-wrap gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {sortedContacts.map(contact => (
             <ContactCircle
               key={contact.id}
