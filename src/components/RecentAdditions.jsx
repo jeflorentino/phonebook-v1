@@ -10,7 +10,7 @@ const RecentAdditions = ({ contacts, onEdit }) => {
     <div className="w-full p-4 bg-gray-100 rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Últimos adicionados</h2>
       {sortedContacts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 overflow-x-auto">
           {sortedContacts.map(contact => (
             <ContactCircle
               key={contact.id}

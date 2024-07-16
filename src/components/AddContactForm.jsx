@@ -88,7 +88,7 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
   const isFormValid = valid_phone && name && notes.length <= 140;
 
   return (
-    <div className="w-1/2 p-4 bg-white shadow-md mr-4">
+    <div className="p-4 lg:col-span-2">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <PhoneInput
@@ -107,13 +107,13 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
           <input
             type="text"
             placeholder="Digite o nome"
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="px-2 py-3 bg-white w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-500"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 sm:col-span-2">
           <textarea
             type="text"
             placeholder="Digite"
