@@ -43,7 +43,7 @@ class PhonecontactsController < ApplicationController
     def set_phonecontact
       @phonecontact = Phonecontact.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-       render json: { error: 'Phonecontact not found' }, status: :not_found
+      render json: { error: 'Phonecontact not found' }, status: :not_found
     end
 
     # Only allow a list of trusted parameters through.
