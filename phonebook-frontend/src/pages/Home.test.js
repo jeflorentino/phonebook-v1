@@ -33,7 +33,7 @@ describe('Home', () => {
         expect(addButton).toBeInTheDocument();
         expect(addButton).toBeDisabled();
 
-        expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Pesquise aqui')).toBeInTheDocument();
 
         await waitFor(() => {
             expect(screen.getByText('Ainda não tem contatos salvos na sua lista')).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe('Home', () => {
     it('should filter contacts based on the search term', async () => {
         renderHome();
 
-        fireEvent.change(screen.getByPlaceholderText('Search'), {
+        fireEvent.change(screen.getByPlaceholderText('Pesquise aqui'), {
             target: { value: 'Dina' },
         });
 

@@ -18,7 +18,7 @@ describe('Filter Component', () => {
             />
         );
 
-        expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Pesquise aqui')).toBeInTheDocument();
     });
 
     test('calls onSearchChange when input value changes', () => {
@@ -29,7 +29,7 @@ describe('Filter Component', () => {
             />
         );
 
-        fireEvent.change(screen.getByPlaceholderText('Search'), {
+        fireEvent.change(screen.getByPlaceholderText('Pesquise aqui'), {
             target: { value: 'test' },
         });
 
@@ -44,6 +44,6 @@ describe('Filter Component', () => {
             />
         );
 
-        expect(screen.getByPlaceholderText('Search')).toHaveValue('initial value');
+        expect(screen.getByPlaceholderText('Pesquise aqui')).toHaveValue('initial value');
     });
 });

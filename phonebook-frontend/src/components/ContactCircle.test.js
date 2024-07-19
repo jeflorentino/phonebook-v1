@@ -22,7 +22,7 @@ describe('ContactCircle', () => {
 
         const nameElement = screen.getByText(contact.name);
         expect(nameElement).toBeInTheDocument();
-        expect(nameElement).toHaveClass('text-xs');
+        expect(nameElement).toHaveClass('text-sm');
     });
 
     it('calls onEdit when the circle is clicked', () => {

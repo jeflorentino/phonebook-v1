@@ -9,7 +9,7 @@ const ContactList = ({ contacts, searchTerm, onEdit, onDelete }) => {
   );
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 bg-white rounded-lg p-6 shadow-2xl space-y-4">
       {filteredContacts.map(contact => (
         <ContactCard
           key={contact.id}

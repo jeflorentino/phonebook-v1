@@ -15,6 +15,14 @@ module.exports = {
           medium: '#5E5E5C',
           dark: '#353736',
         },
+        circle: {
+          one: '#FF6F59',
+          two: '#254441',
+          three:'#43AA8B',
+          four: '#EF3054',
+          five: '#1B8AAC'
+
+        },
         black: '#212121',
         white: '#FFFFFF',
       },

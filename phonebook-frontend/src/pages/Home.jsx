@@ -61,9 +61,9 @@ const Home = () => {
   return (
     <div className="max-w-5xl max-lg:max-w-3xl mx-auto my-6">
       <div className='w-full h-20'>
-        <header className="text-center bg-gray-800 p-4 md:p-8 relative">
+        <header className="text-center bg-gray-800 p-8 md:py-16 relative">
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-          <h1 className="text-yellowzim-primary text-3xl md:text-4xl font-bold text-center">YellowZim</h1>
+          <h1 className="text-yellowzim-primary text-4xl md:text-5xl font-bold text-center">YellowZim</h1>
 
           </div>
         </header>
@@ -85,16 +85,22 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-full p-4 shadow-md">
+        <div className="flex flex-col justify-center p-4">
+          <div className='justify-center py-2 px-5 rounded-lg my-8'>
           <Filter
             searchTerm={searchTerm}
             onSearchChange={handleSearchChange}
             hasData={hasData} />
+
+          </div>
+          <div className='justify-center py-2 rounded-lg'>
           <ContactList
             contacts={contacts}
             searchTerm={searchTerm}
             onEdit={handleEdit}
             onDelete={handleDelete} />
+
+          </div>
         </div>
       </div>
       {error && <p className="text-red-500">{error}</p>}

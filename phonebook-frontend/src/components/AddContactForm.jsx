@@ -88,8 +88,8 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
   const isFormValid = valid_phone && name && notes.length <= 140;
 
   return (
-    <div className="mx-auto mt-8 bg-white rounded-lg p-6 shadow-2xl space-y-4">
-      <h2 className="text-xl font-bold font-mono mb-4">
+    <div className="mx-auto mt-8 bg-white rounded-lg p-6 shadow-2xl space-y-4 min-h-[340px]">
+      <h2 className="text-3xl font-extrabold mb-6 text-gray-dark">
         {editingContact ? 'Editar contato' : 'Adicionar contato'}
       </h2>
       <form onSubmit={handleSubmit}>
@@ -110,26 +110,28 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
           <input
             type="text"
             placeholder="Digite o nome"
-            className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-yellow-400"
+            className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-yellowzim-primary focus:ring-yellowzim-primary"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            aria-label="Nome"
           />
         </div>
         <div className="mb-4">
           <textarea
             type="text"
             placeholder="Digite"
-            className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-yellow-400"
+            className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-yellowzim-primary focus:ring-yellowzim-primary"
             value={notes}
             onChange={handleNotesChange}
+            aria-label="Notas"
           />
           {notesError && <p className="text-red-500">{notesError}</p>}
         </div>
         <div className="flex justify-between">
           <button
             type="submit"
-            className={`bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed`}
+            className={`bg-yellowzim-primary hover:bg-yellowzim-secondary text-black font-bold px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellowzim-primary disabled:bg-gray-400 disabled:cursor-not-allowed`}
             disabled={!isFormValid}
           >
             {editingContact ? 'Atualizar' : 'Adicionar'}
@@ -137,7 +139,7 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
           {editingContact && (
             <button
               type="button"
-              className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+              className="bg-gray-light hover:bg-gray-medium text-black font-bold py-2 px-4 rounded"
               onClick={handleCancelEdit}
             >
               Cancelar

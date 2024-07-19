@@ -16,19 +16,19 @@ const ContactCard = ({ contact, onDelete, onEdit }) => {
   return (
     <>
       <div
-        className="flex items-center gap-6 bg-white rounded-xl pl-4 shadow-lg h-24 hover:transform hover:translate-y-1 transition-transform duration-300"
+        className="flex items-center pl-4 pt-3 gap-6 rounded-xl shadow-lg h-24 hover:transform hover:translate-y-1 transition-transform duration-300"
         onClick={() => onEdit(contact)}
       >
         <div className="flex flex-grow items-center gap-4">
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-gray-800">{contact.name}</h3>
+            <h3 className="text-lg font-semibold text-gray-dark">{contact.name}</h3>
           </div>
           <div className="flex-1">
-            <p className="text-sm text-gray-600">{formatPhoneNumber(contact.phone_number)}</p>
+            <p className="text-sm text-gray-medium">{formatPhoneNumber(contact.phone_number)}</p>
           </div>
           <div className="flex-1">
             <p
-              className="text-sm text-blue-500 cursor-pointer underline"
+              className="text-sm text-circle-five cursor-pointer underline"
               onClick={handleNoteClick}
             >
               Ver Nota
@@ -58,7 +58,7 @@ const ContactCard = ({ contact, onDelete, onEdit }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-xl font-semibold mb-4">Nota Completa</h2>
-            <p className="text-sm text-gray-600">{contact.notes}</p>
+            <p className="text-sm text-gray-medium">{contact.notes}</p>
             <button
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg focus:outline-none hover:bg-blue-700 transition-colors duration-300"
               onClick={closeModal}
