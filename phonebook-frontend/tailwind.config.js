@@ -7,13 +7,13 @@ module.exports = {
     extend: {
       colors: {
         yellowzim: {
-          primary: '#FFB400',
-          secondary: '#C3A73F',
+          primary: '#FEC20C',
+          secondary: '#FDD554',
         },
         gray: {
-          light: '#F6F6F6',
-          medium: '#E8E8E8',
-          dark: '#1A2F46',
+          light: '#9FA09C',
+          medium: '#5E5E5C',
+          dark: '#353736',
         },
         black: '#212121',
         white: '#FFFFFF',

@@ -26,7 +26,7 @@ describe('Home', () => {
     it('renders initial components and state', async () => {
         renderHome();
 
-        expect(screen.getByText('Yellowzim')).toBeInTheDocument();
+        expect(screen.getByText('YellowZim')).toBeInTheDocument();
         expect(screen.getByPlaceholderText('Digite o nome')).toBeInTheDocument();
         expect(screen.getByPlaceholderText('Digite')).toBeInTheDocument();
         const addButton = screen.getByRole('button', { name: /Adicionar/i });

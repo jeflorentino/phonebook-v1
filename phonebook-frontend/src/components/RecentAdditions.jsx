@@ -7,7 +7,7 @@ const RecentAdditions = ({ contacts, onEdit }) => {
     .slice(0, 6);  
 
   return (
-    <div className="w-full p-4 bg-gray-100 rounded-lg">
+    <div className="mx-auto mt-8 rounded-lg p-6 shadow-2xl space-y-4">
       <h2 className="text-2xl font-bold mb-4">Últimos adicionados</h2>
       {sortedContacts.length > 0 ? (
         <div className="grid grid-cols-3 gap-4 overflow-x-auto">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import 'react-phone-input-2/lib/high-res.css';
 import { addContact } from '../services/api';
 
 const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) => {
@@ -71,24 +71,27 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
     const isAmerican = cleaned.startsWith('1');
 
     if (isBrazilian) {
-        if (cleaned.length === 13 && cleaned[4] === '9') { // Número móvel
-            return true;
-        } else if (cleaned.length === 12 && cleaned[4] !== '9') { // Número fixo
-            return true;
-        } else {
-            return false;
-        }
-    } else if (isAmerican && cleaned.length === 11) {
+      if (cleaned.length === 13 && cleaned[4] === '9') { // Número móvel
         return true;
-    } else {
+      } else if (cleaned.length === 12 && cleaned[4] !== '9') { // Número fixo
+        return true;
+      } else {
         return false;
+      }
+    } else if (isAmerican && cleaned.length === 11) {
+      return true;
+    } else {
+      return false;
     }
   };
 
   const isFormValid = valid_phone && name && notes.length <= 140;
 
   return (
-    <div className="p-4 lg:col-span-2">
+    <div className="mx-auto mt-8 bg-white rounded-lg p-6 shadow-2xl space-y-4">
+      <h2 className="text-xl font-bold font-mono mb-4">
+        {editingContact ? 'Editar contato' : 'Adicionar contato'}
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <PhoneInput
@@ -107,17 +110,17 @@ const AddContactForm = ({ onAdd, onUpdate, editingContact, setEditingContact }) 
           <input
             type="text"
             placeholder="Digite o nome"
-            className="px-2 py-3 bg-white w-full text-sm text-gray-800 border-b border-gray-300 focus:border-blue-500"
+            className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-yellow-400"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
-        <div className="mb-4 sm:col-span-2">
+        <div className="mb-4">
           <textarea
             type="text"
             placeholder="Digite"
-            className="w-full p-2 border border-gray-300 rounded-md"
+            className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-yellow-400"
             value={notes}
             onChange={handleNotesChange}
           />
