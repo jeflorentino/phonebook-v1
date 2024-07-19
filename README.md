@@ -98,7 +98,7 @@ This is a full-stack phonebook application implemented as a Single Page Applicat
 
 ```bash
 cd phonebook-backend
-rails test
+bundle exec rspec
 ```
 
 ### Frontend Tests
